@@ -11,8 +11,10 @@ namespace JunkCodeGeneratorApp
     {
         static void Main(string[] args)
         {
-            var generator = new CodeGenerator();
-            
+            var opts = new CodeGeneratorOptions();
+            var generator = new CodeGenerator(opts);
+            var str = generator.Generate();
+            Console.WriteLine(str);
         }
     }
 }
