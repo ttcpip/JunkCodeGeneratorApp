@@ -19,6 +19,8 @@ namespace JunkCodeGeneratorApp
                 DecimalValueMax = decimal.MaxValue,
                 StringArrayMinLen = 1,
                 StringArrayMaxLen = 15,
+                IntArrayMinLen = 1,
+                IntArrayMaxLen = 15,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();

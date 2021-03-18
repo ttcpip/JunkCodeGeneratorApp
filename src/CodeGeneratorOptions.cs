@@ -12,5 +12,7 @@
         public decimal DecimalValueMin { get; set; }
         public int StringArrayMaxLen { get; set; }
         public int StringArrayMinLen { get; set; }
+        public int IntArrayMaxLen { get; set; }
+        public int IntArrayMinLen { get; set; }
     }
 }
