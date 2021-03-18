@@ -51,6 +51,11 @@ namespace JunkCodeGeneratorApp.src
             var intVal = Rand.Int(Opts.IntValueMin, Opts.IntValueMax);
             return intVal.ToString();
         }
+        public string GetRandDecimalValue()
+        {
+            var decimalVal = Rand.Decimal(Opts.DecimalValueMin, Opts.DecimalValueMax);
+            return $"{decimalVal}m";
+        }
         #endregion
         #endregion
 

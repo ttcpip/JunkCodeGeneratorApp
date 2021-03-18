@@ -14,5 +14,7 @@ namespace JunkCodeGeneratorApp.src
         public int StringValueMinLen { get; set; }
         public int IntValueMax { get; set; }
         public int IntValueMin { get; set; }
+        public decimal DecimalValueMax { get; set; }
+        public decimal DecimalValueMin { get; set; }
     }
 }

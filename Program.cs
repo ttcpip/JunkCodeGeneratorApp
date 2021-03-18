@@ -19,6 +19,8 @@ namespace JunkCodeGeneratorApp
                 StringValueMaxLen = 255,
                 IntValueMin = int.MinValue,
                 IntValueMax = int.MaxValue,
+                DecimalValueMin = decimal.MinValue,
+                DecimalValueMax = decimal.MaxValue,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();
