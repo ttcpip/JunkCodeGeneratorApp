@@ -1,4 +1,6 @@
-﻿namespace JunkCodeGeneratorApp.src
+﻿using System.Linq;
+
+namespace JunkCodeGeneratorApp.src
 {
     public class CodeGenerator
     {
@@ -49,6 +51,12 @@
         {
             var decimalVal = Rand.Decimal(Opts.DecimalValueMin, Opts.DecimalValueMax);
             return $"{decimalVal}m";
+        }
+        public string GetRandStringArrayValue()
+        {
+            var len = Rand.Int(Opts.StringArrayMinLen, Opts.StringArrayMaxLen);
+            var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandStringValue()).ToArray());
+            return "new string[] { %s }".Replace("%s", values);
         }
         #endregion
         #endregion
