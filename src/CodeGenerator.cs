@@ -46,6 +46,11 @@ namespace JunkCodeGeneratorApp.src
             var stringValue = $"\"{Rand.String(len, chars)}\"";
             return stringValue;
         }
+        public string GetRandIntValue()
+        {
+            var intVal = Rand.Int(Opts.IntValueMin, Opts.IntValueMax);
+            return intVal.ToString();
+        }
         #endregion
         #endregion
 
