@@ -15,6 +15,8 @@ namespace JunkCodeGeneratorApp
             {
                 IdMinLen = 5,
                 IdMaxLen = 32,
+                StringValueMinLen = 1,
+                StringValueMaxLen = 255,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();

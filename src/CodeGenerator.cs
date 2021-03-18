@@ -39,6 +39,13 @@ namespace JunkCodeGeneratorApp.src
                 varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_")[0] + varName.Substring(1);
             return varName;
         }
+        public string GetRandStringValue()
+        {
+            var len = Rand.Int(Opts.StringValueMinLen, Opts.StringValueMaxLen);
+            var chars = "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@_!#$%^&*()-+/?.<>,АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ";
+            var stringValue = $"\"{Rand.String(len, chars)}\"";
+            return stringValue;
+        }
         #endregion
         #endregion
 
