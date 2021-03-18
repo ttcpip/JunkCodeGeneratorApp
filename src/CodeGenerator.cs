@@ -64,6 +64,12 @@ namespace JunkCodeGeneratorApp.src
             var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandIntValue()).ToArray());
             return "new int[] { %s }".Replace("%s", values);
         }
+        public string GetRandDecimalArrayValue()
+        {
+            var len = Rand.Int(Opts.StringArrayMinLen, Opts.StringArrayMaxLen);
+            var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandDecimalValue()).ToArray());
+            return "new decimal[] { %s }".Replace("%s", values);
+        }
         #endregion
         #endregion
 

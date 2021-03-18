@@ -14,5 +14,7 @@
         public int StringArrayMinLen { get; set; }
         public int IntArrayMaxLen { get; set; }
         public int IntArrayMinLen { get; set; }
+        public int DecimalArrayMaxLen { get; set; }
+        public int DecimalArrayMinLen { get; set; }
     }
 }
