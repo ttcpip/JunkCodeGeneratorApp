@@ -12,6 +12,7 @@ namespace JunkCodeGeneratorApp.src
 
         public int Int(int min, int max)
         {
+            Console.WriteLine();
             return random.Next(min, max);
         }
 
@@ -23,5 +24,31 @@ namespace JunkCodeGeneratorApp.src
 
             return k;
         }
+
+        private int NextInt32()
+        {
+            int firstBits = random.Next(0, 1 << 4) << 28;
+            int lastBits = random.Next(0, 1 << 28);
+            return firstBits | lastBits;
+        }
+        private decimal NextDecimalSample()
+        {
+            var sample = 1m;
+            while (sample >= 1)
+            {
+                var a = NextInt32();
+                var b = NextInt32();
+                //The high bits of 0.9999999999999999999999999999m are 542101086.
+                var c = random.Next(542101087);
+                sample = new Decimal(a, b, c, false, 28);
+            }
+            return sample;
+        }
+        public decimal Decimal(decimal minValue, decimal maxValue)
+        {
+            var nextDecimalSample = NextDecimalSample();
+            return maxValue * nextDecimalSample + minValue * (1 - nextDecimalSample);
+        }
+
     }
 }
