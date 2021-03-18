@@ -11,7 +11,11 @@ namespace JunkCodeGeneratorApp
     {
         static void Main(string[] args)
         {
-            var opts = new CodeGeneratorOptions();
+            var opts = new CodeGeneratorOptions()
+            {
+                IdMinLen = 5,
+                IdMaxLen = 32,
+            };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();
             Console.WriteLine(str);

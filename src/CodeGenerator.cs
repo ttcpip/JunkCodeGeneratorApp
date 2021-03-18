@@ -26,8 +26,20 @@ namespace JunkCodeGeneratorApp.src
         #region Private methods
         private string GetString()
         {
-            return Rand.String(10); // TODO
+            return GetRandIdString();
         }
+
+        #region base things
+        private string GetRandIdString()
+        {
+            var len = Rand.Int(Opts.IdMinLen, Opts.IdMaxLen);
+            var chars = @"abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@_";
+            var varName = Rand.String(len, chars);
+            if (char.IsNumber(varName[0]))
+                varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_")[0] + varName.Substring(1);
+            return varName;
+        }
+        #endregion
         #endregion
 
     }

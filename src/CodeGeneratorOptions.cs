@@ -8,6 +8,7 @@ namespace JunkCodeGeneratorApp.src
 {
     public class CodeGeneratorOptions
     {
-
+        public int IdMaxLen { get; set; }
+        public int IdMinLen { get; set; }
     }
 }
