@@ -6,10 +6,12 @@ namespace JunkCodeGeneratorApp.src
     {
         private CodeGeneratorOptions Opts;
         private RandomGenarator Rand;
+        private Parser Parser;
         public CodeGenerator(CodeGeneratorOptions opts)
         {
             Opts = opts;
             Rand = new RandomGenarator();
+            Parser = new Parser();
         }
 
         #region Public methods
@@ -120,6 +122,146 @@ namespace JunkCodeGeneratorApp.src
             return $"decimal[] {varName}";
         }
         #endregion
+
+        public string GetRandMathExpression()
+        {
+            var mathLibPath = "System.Math";
+            var mathEConst = $"{mathLibPath}.E";
+            var mathPIConst = $"{mathLibPath}.PI";
+            var functions = new string[]
+            {
+                $"{mathLibPath}.Abs({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Abs((float){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Abs((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Abs({mathEConst})",
+                $"{mathLibPath}.Abs({mathPIConst})",
+                $"{mathLibPath}.Abs({Placeholders.RANDOM_INT_VALUE})",
+                $"{mathLibPath}.Abs({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Abs({Placeholders.RANDOM_INT_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.BigMul({Placeholders.RANDOM_INT_VALUE}, {Placeholders.RANDOM_INT_VALUE})",
+                $"{mathLibPath}.BigMul({Placeholders.RANDOM_INT_ARRAY_VALUE}[0], {Placeholders.RANDOM_INT_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Ceiling({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Ceiling({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Ceiling((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Ceiling((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Ceiling({mathEConst})",
+                $"{mathLibPath}.Ceiling({mathPIConst})",
+
+                $"{mathLibPath}.Cos((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Cos((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Cos({mathEConst})",
+                $"{mathLibPath}.Cos({mathPIConst})",
+                $"{mathLibPath}.Cosh((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Cosh({mathEConst})",
+                $"{mathLibPath}.Cosh({mathPIConst})",
+                $"{mathLibPath}.Cosh((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Exp((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Exp((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Exp({mathEConst})",
+                $"{mathLibPath}.Exp({mathPIConst})",
+
+                $"{mathLibPath}.Floor((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Floor((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Floor({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Floor({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Floor((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Floor((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Floor({mathEConst})",
+                $"{mathLibPath}.Floor({mathPIConst})",
+
+                $"{mathLibPath}.IEEERemainder((double){Placeholders.RANDOM_DECIMAL_VALUE}, (double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.IEEERemainder((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], (double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.IEEERemainder({mathEConst}, (double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.IEEERemainder((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], {mathPIConst})",
+
+                $"{mathLibPath}.Log((double){Placeholders.RANDOM_DECIMAL_VALUE}, (double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Log((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Log({mathEConst}, (double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Log((double){Placeholders.RANDOM_DECIMAL_VALUE}, {mathPIConst})",
+                $"{mathLibPath}.Log({mathEConst})",
+                $"{mathLibPath}.Log({mathPIConst})",
+                $"{mathLibPath}.Log((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Log((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], (double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Log10((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Log10((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Max({Placeholders.RANDOM_DECIMAL_VALUE}, {Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Max({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], {Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Max((float){Placeholders.RANDOM_DECIMAL_VALUE}, (float){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Max((float){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], (float){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Max({Placeholders.RANDOM_INT_VALUE}, {Placeholders.RANDOM_INT_VALUE})",
+                $"{mathLibPath}.Max({Placeholders.RANDOM_INT_ARRAY_VALUE}[0], {Placeholders.RANDOM_INT_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Max({Placeholders.RANDOM_BYTE_VALUE}, {Placeholders.RANDOM_BYTE_VALUE})",
+                $"{mathLibPath}.Max({Placeholders.RANDOM_BYTE_ARRAY_VALUE}[0], {Placeholders.RANDOM_BYTE_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Min({Placeholders.RANDOM_DECIMAL_VALUE}, {Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Min({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], {Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Min((float){Placeholders.RANDOM_DECIMAL_VALUE}, (float){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Min((float){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], (float){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Min({Placeholders.RANDOM_INT_VALUE}, {Placeholders.RANDOM_INT_VALUE})",
+                $"{mathLibPath}.Min({Placeholders.RANDOM_INT_ARRAY_VALUE}[0], {Placeholders.RANDOM_INT_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Min({Placeholders.RANDOM_BYTE_VALUE}, {Placeholders.RANDOM_BYTE_VALUE})",
+                $"{mathLibPath}.Min({Placeholders.RANDOM_BYTE_ARRAY_VALUE}[0], {Placeholders.RANDOM_BYTE_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Pow((double){Placeholders.RANDOM_DECIMAL_VALUE}, (double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Pow((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0], (double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Round({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Round((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Round({mathEConst})",
+                $"{mathLibPath}.Round({mathPIConst})",
+                $"{mathLibPath}.Round({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Round((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Sign({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sign({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Sign({mathEConst})",
+                $"{mathLibPath}.Sign({mathPIConst})",
+                $"{mathLibPath}.Sign((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sign((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Sign((float){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sign((float){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Sign({Placeholders.RANDOM_INT_VALUE})",
+                $"{mathLibPath}.Sign({Placeholders.RANDOM_INT_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Sin((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sin((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Sinh((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sinh((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Sin({mathEConst})",
+                $"{mathLibPath}.Sin({mathPIConst})",
+                $"{mathLibPath}.Sinh({mathEConst})",
+                $"{mathLibPath}.Sinh({mathPIConst})",
+
+                $"{mathLibPath}.Sqrt((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Sqrt({mathEConst})",
+                $"{mathLibPath}.Sqrt({mathPIConst})",
+                $"{mathLibPath}.Sqrt((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+
+                $"{mathLibPath}.Tan((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Tan((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Tan({mathEConst})",
+                $"{mathLibPath}.Tan({mathPIConst})",
+                $"{mathLibPath}.Tanh((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Tanh((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Tanh({mathEConst})",
+                $"{mathLibPath}.Tanh({mathPIConst})",
+
+                $"{mathLibPath}.Truncate((double){Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Truncate((double){Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Truncate({Placeholders.RANDOM_DECIMAL_VALUE})",
+                $"{mathLibPath}.Truncate({Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}[0])",
+                $"{mathLibPath}.Truncate({mathEConst})",
+                $"{mathLibPath}.Truncate({mathPIConst})",
+            };
+
+            var fnStr = Rand.GetRandElementFromArray(functions);
+            var randMathExpression = Parser.ReplacePlaceholdersWithData(this, fnStr);
+            return $"{randMathExpression};";
+        }
         #endregion
 
     }
