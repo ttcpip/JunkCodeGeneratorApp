@@ -11,6 +11,10 @@ namespace JunkCodeGeneratorApp.src
         {
             return random.Next(min, max);
         }
+        public byte Byte(int min, int max)
+        {
+            return (byte)Int(min, max);
+        }
 
         public string String(int length, string chars = @"abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
         {
