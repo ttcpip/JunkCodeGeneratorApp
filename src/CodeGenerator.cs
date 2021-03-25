@@ -17,7 +17,20 @@ namespace JunkCodeGeneratorApp.src
         #region Public methods
         public string Generate()
         {
-            return GetRandIdString();
+            var elementsCount = Rand.Int(Opts.MinElements, Opts.MaxElements);
+            var str = "";
+            for (int i = 0; i < elementsCount; i++)
+                str += GetRandomCodeElement() + "\n";
+            return str; 
+        }
+        public string GetRandomCodeElement()
+        {
+            var arr = new int[] { 1, 2 };
+            var randItem = Rand.GetRandElementFromArray(arr);
+            if (randItem == 1)
+                return GetRandExpression();
+            else
+                return GetRandLoop();
         }
 
         public string GetRandIdString()
@@ -344,7 +357,7 @@ namespace JunkCodeGeneratorApp.src
             var loopTemplate = $"for (int {iName} = 0; {iName} < {maxI}; {iName}++)\n{{\n";
             for (int i = 0; i < inLoopExpressionsCount; i++)
                 loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
-            loopTemplate += "\n}}";
+            loopTemplate += "\n}";
             var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
             return loop;
         }
@@ -353,11 +366,12 @@ namespace JunkCodeGeneratorApp.src
             var iName = GetRandIdString();
             var inLoopExpressionsCount = Rand.Int(Opts.MinInLoopExpressions, Opts.MaxInLoopExpressions);
             var maxI = Rand.Int(0, 10);
-            var loopTemplate = $"while ({iName} < {maxI})\n{{\n";
+            var loopTemplate = $"var {iName} = 0;\n";
+            loopTemplate += $"while ({iName} < {maxI})\n{{\n";
             loopTemplate += $"++{iName};\n";
             for (int i = 0; i < inLoopExpressionsCount; i++)
                 loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
-            loopTemplate += "\n}}";
+            loopTemplate += "\n}";
             var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
             return loop;
         }     
@@ -376,7 +390,7 @@ namespace JunkCodeGeneratorApp.src
             var loopTemplate = $"foreach (var {iName} in {collection})\n{{\n";
             for (int i = 0; i < inLoopExpressionsCount; i++)
                 loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
-            loopTemplate += "\n}}";
+            loopTemplate += "\n}";
             var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
             return loop;
         }

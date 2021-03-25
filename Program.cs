@@ -27,11 +27,14 @@ namespace JunkCodeGeneratorApp
                 ByteValueMax = byte.MaxValue,
                 ByteArrayMinLen = 1,
                 ByteArrayMaxLen = 15,
-                MinInLoopExpressions = 1,
-                MaxInLoopExpressions = 100,
+                MinInLoopExpressions = 2,
+                MaxInLoopExpressions = 5,
+                MinElements = 5,
+                MaxElements = 10,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();
+            System.IO.File.WriteAllText("output.txt", str);
             Console.WriteLine(str);
         }
     }

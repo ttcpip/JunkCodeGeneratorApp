@@ -50,6 +50,7 @@
     <Compile Include="src\Parser.cs" />
     <Compile Include="src\Placeholders.cs" />
     <Compile Include="src\RandomGenarator.cs" />
+    <Compile Include="src\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -22,5 +22,7 @@
         public int DecimalArrayMinLen { get; set; }
         public int MaxInLoopExpressions { get; set; }
         public int MinInLoopExpressions { get; set; }
+        public int MaxElements { get; set; }
+        public int MinElements { get; set; }
     }
 }
