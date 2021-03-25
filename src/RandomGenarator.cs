@@ -47,5 +47,12 @@ namespace JunkCodeGeneratorApp.src
             return maxValue * nextDecimalSample + minValue * (1 - nextDecimalSample);
         }
 
+        public T GetRandElementFromArray<T>(T[] arr)
+        {
+            if (arr.Length <= 0)
+                return default(T);
+            var randIndex = Int(0, arr.Length);
+            return arr[randIndex];
+        }
     }
 }
