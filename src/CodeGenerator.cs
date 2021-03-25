@@ -25,7 +25,6 @@ namespace JunkCodeGeneratorApp.src
             return GetRandIdString();
         }
 
-        #region base things
         private string GetRandIdString()
         {
             var len = Rand.Int(Opts.IdMinLen, Opts.IdMaxLen);
@@ -35,6 +34,7 @@ namespace JunkCodeGeneratorApp.src
                 varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_")[0] + varName.Substring(1);
             return varName;
         }
+        #region Getting values
         public string GetRandStringValue()
         {
             var len = Rand.Int(Opts.StringValueMinLen, Opts.StringValueMaxLen);
@@ -69,6 +69,44 @@ namespace JunkCodeGeneratorApp.src
             var len = Rand.Int(Opts.StringArrayMinLen, Opts.StringArrayMaxLen);
             var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandDecimalValue()).ToArray());
             return "new decimal[] { %s }".Replace("%s", values);
+        }
+        #endregion
+
+        #region Variable left-side declarations
+        public string GetVarVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"var {varName}";
+        }
+        public string GetStringVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"string {varName}";
+        }
+        public string GetIntVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"int {varName}";
+        }
+        public string GetDecimalVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"decimal {varName}";
+        }
+        public string GetStringArrayVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"string[] {varName}";
+        }
+        public string GetIntArrayVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"int[] {varName}";
+        }
+        public string GetDecimalArrayVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"decimal[] {varName}";
         }
         #endregion
         #endregion
