@@ -9,7 +9,6 @@ namespace JunkCodeGeneratorApp.src
 
         public int Int(int min, int max)
         {
-            Console.WriteLine();
             return random.Next(min, max);
         }
 
