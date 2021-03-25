@@ -95,6 +95,11 @@ namespace JunkCodeGeneratorApp.src
             var varName = GetRandIdString();
             return $"int {varName}";
         }
+        public string GetByteVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"byte {varName}";
+        }
         public string GetDecimalVariableRandDeclaration()
         {
             var varName = GetRandIdString();
@@ -109,6 +114,11 @@ namespace JunkCodeGeneratorApp.src
         {
             var varName = GetRandIdString();
             return $"int[] {varName}";
+        }
+        public string GetByteArrayVariableRandDeclaration()
+        {
+            var varName = GetRandIdString();
+            return $"byte[] {varName}";
         }
         public string GetDecimalArrayVariableRandDeclaration()
         {
