@@ -11,7 +11,7 @@ namespace JunkCodeGeneratorApp.src
         {
             return random.Next(min, max);
         }
-        public byte Byte(int min, int max)
+        public byte Byte(byte min, byte max)
         {
             return (byte)Int(min, max);
         }
