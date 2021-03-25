@@ -30,6 +30,27 @@ namespace JunkCodeGeneratorApp.src
             return varName;
         }
 
+        public string GetRandExpression()
+        {
+            var arr = new int[] { 1, 2 };
+            var randItem = Rand.GetRandElementFromArray(arr);
+            if (randItem == 1)
+                return GetRandMathExpression();
+            else
+                return GetRandVariableDeclarationExpression();
+        }
+        public string GetRandLoop()
+        {
+            var arr = new int[] { 1, 2, 3 };
+            var randItem = Rand.GetRandElementFromArray(arr);
+            if (randItem == 1)
+                return GetRandForLoop();
+            else if (randItem == 2)
+                return GetRandWhileLoop();
+            else
+                return GetRandForeachLoop();
+        }
+
         #region Getting values
         public string GetRandStringValue()
         {
@@ -311,6 +332,53 @@ namespace JunkCodeGeneratorApp.src
             var randTemplate = Rand.GetRandElementFromArray(templates);
             var randVariableDeclarationExpression = Parser.ReplacePlaceholdersWithData(this, randTemplate);
             return $"{randVariableDeclarationExpression};";
+        }
+        #endregion
+
+        #region Getting loops
+        public string GetRandForLoop()
+        {
+            var iName = GetRandIdString();
+            var inLoopExpressionsCount = Rand.Int(Opts.MinInLoopExpressions, Opts.MaxInLoopExpressions);
+            var maxI = Rand.Int(0, 10);
+            var loopTemplate = $"for (int {iName} = 0; {iName} < {maxI}; {iName}++)\n{{\n";
+            for (int i = 0; i < inLoopExpressionsCount; i++)
+                loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
+            loopTemplate += "\n}}";
+            var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
+            return loop;
+        }
+        public string GetRandWhileLoop()
+        {
+            var iName = GetRandIdString();
+            var inLoopExpressionsCount = Rand.Int(Opts.MinInLoopExpressions, Opts.MaxInLoopExpressions);
+            var maxI = Rand.Int(0, 10);
+            var loopTemplate = $"while ({iName} < {maxI})\n{{\n";
+            loopTemplate += $"++{iName};\n";
+            for (int i = 0; i < inLoopExpressionsCount; i++)
+                loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
+            loopTemplate += "\n}}";
+            var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
+            return loop;
+        }     
+        public string GetRandForeachLoop()
+        {
+            var iName = GetRandIdString();
+            var possibleArrays = new string[]
+            {
+                Placeholders.RANDOM_BYTE_ARRAY_VALUE,
+                Placeholders.RANDOM_DECIMAL_ARRAY_VALUE,
+                Placeholders.RANDOM_INT_ARRAY_VALUE,
+                Placeholders.RANDOM_STRING_ARRAY_VALUE,
+            };
+            var collection = Rand.GetRandElementFromArray(possibleArrays);
+            var inLoopExpressionsCount = Rand.Int(Opts.MinInLoopExpressions, Opts.MaxInLoopExpressions);
+            var loopTemplate = $"foreach (var {iName} in {collection})\n{{\n";
+            for (int i = 0; i < inLoopExpressionsCount; i++)
+                loopTemplate += $"\t{Placeholders.RANDOM_EXPRESSION}\n";
+            loopTemplate += "\n}}";
+            var loop = Parser.ReplacePlaceholdersWithData(this, loopTemplate);
+            return loop;
         }
         #endregion
 

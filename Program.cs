@@ -27,6 +27,8 @@ namespace JunkCodeGeneratorApp
                 ByteValueMax = byte.MaxValue,
                 ByteArrayMinLen = 1,
                 ByteArrayMaxLen = 15,
+                MinInLoopExpressions = 1,
+                MaxInLoopExpressions = 100,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();

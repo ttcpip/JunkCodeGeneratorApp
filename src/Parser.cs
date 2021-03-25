@@ -59,7 +59,11 @@ namespace JunkCodeGeneratorApp.src
                     return CodeGenerator.GetRandMathExpression();
                 case Placeholders.RANDOM_VARIABLE_DECLARATION_EXPRESSION:
                     return CodeGenerator.GetRandVariableDeclarationExpression();
+                case Placeholders.RANDOM_EXPRESSION:
+                    return CodeGenerator.GetRandExpression();
 
+                case Placeholders.RANDOM_LOOP:
+                    return CodeGenerator.GetRandLoop();
 
                 default:
                     return STRING_BY_PLACEHOLDER_NOT_FOUND_RETURNING_STRING;

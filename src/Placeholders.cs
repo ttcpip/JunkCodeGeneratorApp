@@ -23,6 +23,9 @@
 
         public const string RANDOM_MATH_EXPRESSION = "RANDOM_MATH_EXPRESSION";
         public const string RANDOM_VARIABLE_DECLARATION_EXPRESSION = "RANDOM_VARIABLE_DECLARATION_EXPRESSION";
+        public const string RANDOM_EXPRESSION = "RANDOM_EXPRESSION";
+
+        public const string RANDOM_LOOP = "RANDOM_LOOP";
 
         public static string[] PlaceholdersArray = new string[]
         {
@@ -45,6 +48,8 @@
             DECIMAL_ARRAY_VARIABLE_RAND_DECLARATION,
             RANDOM_MATH_EXPRESSION,
             RANDOM_VARIABLE_DECLARATION_EXPRESSION,
+            RANDOM_EXPRESSION,
+            RANDOM_LOOP,
         };
     }
 }

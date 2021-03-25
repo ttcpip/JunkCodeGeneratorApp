@@ -20,5 +20,7 @@
         public int ByteArrayMinLen { get; set; }
         public int DecimalArrayMaxLen { get; set; }
         public int DecimalArrayMinLen { get; set; }
+        public int MaxInLoopExpressions { get; set; }
+        public int MinInLoopExpressions { get; set; }
     }
 }
