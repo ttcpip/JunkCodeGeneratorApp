@@ -17,17 +17,10 @@ namespace JunkCodeGeneratorApp.src
         #region Public methods
         public string Generate()
         {
-            return GetString();
-        }
-        #endregion
-
-        #region Private methods
-        private string GetString()
-        {
             return GetRandIdString();
         }
 
-        private string GetRandIdString()
+        public string GetRandIdString()
         {
             var len = Rand.Int(Opts.IdMinLen, Opts.IdMaxLen);
             var chars = @"abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@_";
@@ -36,6 +29,7 @@ namespace JunkCodeGeneratorApp.src
                 varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_")[0] + varName.Substring(1);
             return varName;
         }
+
         #region Getting values
         public string GetRandStringValue()
         {
@@ -123,6 +117,7 @@ namespace JunkCodeGeneratorApp.src
         }
         #endregion
 
+        #region Getting expressions
         public string GetRandMathExpression()
         {
             var mathLibPath = "System.Math";
@@ -264,5 +259,6 @@ namespace JunkCodeGeneratorApp.src
         }
         #endregion
 
+        #endregion
     }
 }
