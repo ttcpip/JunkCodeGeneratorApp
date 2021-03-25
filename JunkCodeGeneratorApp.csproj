@@ -48,6 +48,7 @@
     <Compile Include="src\CodeGenerator.cs" />
     <Compile Include="src\CodeGeneratorOptions.cs" />
     <Compile Include="src\Parser.cs" />
+    <Compile Include="src\Placeholders.cs" />
     <Compile Include="src\RandomGenarator.cs" />
   </ItemGroup>
   <ItemGroup>
