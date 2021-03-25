@@ -22,7 +22,7 @@
         public const string DECIMAL_ARRAY_VARIABLE_RAND_DECLARATION = "DECIMAL_ARRAY_VARIABLE_RAND_DECLARATION";
 
         public const string RANDOM_MATH_EXPRESSION = "RANDOM_MATH_EXPRESSION";
-        public const string RANDOM_VARIABLE_DECLARATION_EXPRESSION = "RANDOM_MATH_EXPRESSION";
+        public const string RANDOM_VARIABLE_DECLARATION_EXPRESSION = "RANDOM_VARIABLE_DECLARATION_EXPRESSION";
 
         public static string[] PlaceholdersArray = new string[]
         {
