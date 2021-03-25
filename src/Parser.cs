@@ -24,7 +24,7 @@ namespace JunkCodeGeneratorApp.src
                 case Placeholders.RANDOM_INT_VALUE:
                     return CodeGenerator.GetRandIntValue();
                 case Placeholders.RANDOM_BYTE_VALUE:
-                    return CodeGenerator.GetRandIntValue();
+                    return CodeGenerator.GetRandByteValue();
                 case Placeholders.RANDOM_DECIMAL_VALUE:
                     return CodeGenerator.GetRandDecimalValue();
 
