@@ -47,6 +47,11 @@ namespace JunkCodeGeneratorApp.src
             var intVal = Rand.Int(Opts.IntValueMin, Opts.IntValueMax);
             return intVal.ToString();
         }
+        public string GetRandByteValue()
+        {
+            var byteVal = Rand.Byte(Opts.ByteValueMin, Opts.ByteValueMax);
+            return byteVal.ToString();
+        }
         public string GetRandDecimalValue()
         {
             var decimalVal = Rand.Decimal(Opts.DecimalValueMin, Opts.DecimalValueMax);
@@ -63,6 +68,12 @@ namespace JunkCodeGeneratorApp.src
             var len = Rand.Int(Opts.StringArrayMinLen, Opts.StringArrayMaxLen);
             var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandIntValue()).ToArray());
             return "new int[] { %s }".Replace("%s", values);
+        }
+        public string GetRandByteArrayValue()
+        {
+            var len = Rand.Int(Opts.ByteArrayMinLen, Opts.ByteArrayMaxLen);
+            var values = string.Join(", ", Enumerable.Range(0, len).Select((_) => GetRandByteValue()).ToArray());
+            return "new byte[] { %s }".Replace("%s", values);
         }
         public string GetRandDecimalArrayValue()
         {
