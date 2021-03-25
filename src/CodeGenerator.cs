@@ -23,10 +23,10 @@ namespace JunkCodeGeneratorApp.src
         public string GetRandIdString()
         {
             var len = Rand.Int(Opts.IdMinLen, Opts.IdMaxLen);
-            var chars = @"abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@_";
+            var chars = @"abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
             var varName = Rand.String(len, chars);
             if (char.IsNumber(varName[0]))
-                varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@_")[0] + varName.Substring(1);
+                varName = Rand.String(1, "abcdefghijklmnopqstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")[0] + varName.Substring(1);
             return varName;
         }
 
@@ -266,6 +266,51 @@ namespace JunkCodeGeneratorApp.src
             var fnStr = Rand.GetRandElementFromArray(functions);
             var randMathExpression = Parser.ReplacePlaceholdersWithData(this, fnStr);
             return $"{randMathExpression};";
+        }
+        public string GetRandVariableDeclarationExpression()
+        {
+            // Adding the same element more than one time
+            // causes it to be chosen (randomly) more times
+            var templates = new string[]
+            {
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_MATH_EXPRESSION}",
+                
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE} / {Placeholders.RANDOM_INT_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE} % {Placeholders.RANDOM_INT_VALUE}",
+
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.Split(' ')[0]",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.Trim()",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.TrimStart()",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.TrimEnd()",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_ARRAY_VALUE}.ToString()",
+
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_BYTE_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_DECIMAL_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_ARRAY_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_ARRAY_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_BYTE_ARRAY_VALUE}",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}",
+
+                $"{Placeholders.STRING_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}",
+                $"{Placeholders.INT_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE}",
+                $"{Placeholders.BYTE_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_BYTE_VALUE}",
+                $"{Placeholders.DECIMAL_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_DECIMAL_VALUE}",
+                $"{Placeholders.STRING_ARRAY_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_ARRAY_VALUE}",
+                $"{Placeholders.INT_ARRAY_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_ARRAY_VALUE}",
+                $"{Placeholders.BYTE_ARRAY_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_BYTE_ARRAY_VALUE}",
+                $"{Placeholders.DECIMAL_ARRAY_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_DECIMAL_ARRAY_VALUE}",
+            };
+
+            var randTemplate = Rand.GetRandElementFromArray(templates);
+            var randVariableDeclarationExpression = Parser.ReplacePlaceholdersWithData(this, randTemplate);
+            return $"{randVariableDeclarationExpression};";
         }
         #endregion
 

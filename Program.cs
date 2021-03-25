@@ -23,6 +23,10 @@ namespace JunkCodeGeneratorApp
                 IntArrayMaxLen = 15,
                 DecimalArrayMinLen = 1,
                 DecimalArrayMaxLen = 15,
+                ByteValueMin = byte.MinValue,
+                ByteValueMax = byte.MaxValue,
+                ByteArrayMinLen = 1,
+                ByteArrayMaxLen = 15,
             };
             var generator = new CodeGenerator(opts);
             var str = generator.Generate();
