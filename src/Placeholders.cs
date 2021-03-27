@@ -27,6 +27,8 @@
 
         public const string RANDOM_LOOP = "RANDOM_LOOP";
 
+        public const string RANDOM_INDEX_TO_GET_VALUE_FROM_ARRAY = "RANDOM_INDEX_TO_GET_VALUE_FROM_ARRAY";
+
         public static string[] PlaceholdersArray = new string[]
         {
             RANDOM_STRING_VALUE,
@@ -50,6 +52,7 @@
             RANDOM_VARIABLE_DECLARATION_EXPRESSION,
             RANDOM_EXPRESSION,
             RANDOM_LOOP,
+            RANDOM_INDEX_TO_GET_VALUE_FROM_ARRAY,
         };
     }
 }

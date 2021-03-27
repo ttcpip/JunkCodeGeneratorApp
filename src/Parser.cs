@@ -65,6 +65,9 @@ namespace JunkCodeGeneratorApp.src
                 case Placeholders.RANDOM_LOOP:
                     return CodeGenerator.GetRandLoop();
 
+                case Placeholders.RANDOM_INDEX_TO_GET_VALUE_FROM_ARRAY:
+                    return CodeGenerator.GetRandIndexToGetValueFromArray();
+
                 default:
                     return STRING_BY_PLACEHOLDER_NOT_FOUND_RETURNING_STRING;
             }

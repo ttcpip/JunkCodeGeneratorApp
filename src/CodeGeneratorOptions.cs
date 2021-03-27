@@ -24,5 +24,6 @@
         public int MinInLoopExpressions { get; set; }
         public int MaxElements { get; set; }
         public int MinElements { get; set; }
+        public int MaxIndexToGetValueFromArray { get; set; }
     }
 }
