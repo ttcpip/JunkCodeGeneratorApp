@@ -323,7 +323,7 @@ namespace JunkCodeGeneratorApp.src
                 $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE} / {Placeholders.RANDOM_INT_VALUE}",
                 $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_INT_VALUE} % {Placeholders.RANDOM_INT_VALUE}",
 
-                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.Split(' ')[{Placeholders.RANDOM_INDEX_TO_GET_VALUE_FROM_ARRAY}]",
+                $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.Split(' ')[0]",
                 $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.Trim()",
                 $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.TrimStart()",
                 $"{Placeholders.VAR_VARIABLE_RAND_DECLARATION} = {Placeholders.RANDOM_STRING_VALUE}.TrimEnd()",
