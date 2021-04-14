@@ -75,16 +75,22 @@ namespace JunkCodeGeneratorApp.src
         public string GetRandIntValue()
         {
             var intVal = Rand.Int(Opts.IntValueMin, Opts.IntValueMax);
+            if (intVal == 0)
+                intVal = 1;
             return intVal.ToString();
         }
         public string GetRandByteValue()
         {
             var byteVal = Rand.Byte(Opts.ByteValueMin, Opts.ByteValueMax);
+            if (byteVal == 0)
+                byteVal = 1;
             return byteVal.ToString();
         }
         public string GetRandDecimalValue()
         {
             var decimalVal = Rand.Decimal(Opts.DecimalValueMin, Opts.DecimalValueMax);
+            if (decimalVal == decimal.Zero)
+                decimalVal = 1m;
             return $"{decimalVal}m";
         }
         public string GetRandStringArrayValue()
