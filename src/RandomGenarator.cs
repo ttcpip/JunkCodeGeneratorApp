@@ -44,10 +44,11 @@ namespace JunkCodeGeneratorApp.src
             }
             return sample;
         }
-        public decimal Decimal(decimal minValue, decimal maxValue)
+        public decimal Decimal(decimal minValue, decimal maxValue, int decimals = 2)
         {
             var nextDecimalSample = NextDecimalSample();
-            return maxValue * nextDecimalSample + minValue * (1 - nextDecimalSample);
+            var val = maxValue * nextDecimalSample + minValue * (1 - nextDecimalSample);
+            return Math.Round(val, decimals);
         }
 
         public T GetRandElementFromArray<T>(T[] arr)
